@@ -1,48 +1,40 @@
-// entry point
-// server: machine
-// latency
-// server: software
-// tomcat, apache, IIS, nodejs, whatsapp
-// www. example.com
-// 24 * 7
-// web api, web app
-// http server port:3000 (logical)
-// http port: 80
-// https: 443
-// express js
-const http = require('http');
+const express = require('express');
+// common js
+const defaultRouter = require('./routes/defaultRouter');
+const bookRouter = require('./routes/bookRouter');
+const app = express();
 
-function handler(req, res) {
-    // routing
-    switch (req.url) {
-        case '/':
-            res.write("Node API");
-            break;
-        case '/products':
-            res.write("List of products");
-            break;
-        case '/books':
-            const books = [
-                { id: 1, name: 'Headfirst JS', price: 40, inStock: true },
-                { id: 2, name: 'Clean Coder', price: 100, inStock: false },
-                { id: 3, name: 'Clean Code', price: 120, inStock: true },
-            ];
-            res.write(JSON.stringify(books));
-            break;
-        case "/authors":
-            res.write("List of authors");
-            break;
-
-        default:
-            res.write("Not found");
-            break;
-    }
-    res.end();
-}
-
-// higher order function
-const server = http.createServer(handler);
-
-server.listen(3000, function () {
-    console.log("Server is running on port 3000!");
+app.listen(3000, function () {
+    console.log('Server is running on 3000');
 });
+
+// register routing
+app.use(defaultRouter);
+app.use(bookRouter);
+
+// status codes
+// 1xx : information
+// 2xx : success, 200 ok, 201 created, 204 no content
+// 3xx: redirects
+// 4xx: client errors, 404
+// 5xx: server errrors, 501, 500
+// 100 /sec - 100 /sec
+
+// HTTP request format
+// http protocol
+// url: www.google.com/api/users
+
+// Request headers:
+//  Content-Type: application/json
+//  accept: application/json
+//  authorization: token
+//  x-username: xlslsl
+//  x-password: kadjfjdaf   
+
+// Response Headers:
+// MIME types
+//  Content-type: application/json
+//  accept: application/xml
+//  max   :  
+
+// body:{}
