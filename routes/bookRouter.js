@@ -2,6 +2,17 @@ const express = require('express');
 const bookCtrl = require('../controllers/bookCtrl');
 const router = express.Router();
 
-router.get('/books', bookCtrl.get);
+//GET api/books/
+//GET api/books/1
+//POST api/books/
+router.get('/', bookCtrl.get);
+router.get('/:id', bookCtrl.getById);
+router.post('/', bookCtrl.create);
+/*
+    GET http://localhost:3000/books
+    GET http://localhost:3000/books/1
+    GET http://localhost:3000/books/2
+    GET http://localhost:3000/books/100
+*/
 
 module.exports = router;

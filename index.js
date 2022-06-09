@@ -1,5 +1,6 @@
 const express = require('express');
 // common js
+// enterprise applications
 const defaultRouter = require('./routes/defaultRouter');
 const bookRouter = require('./routes/bookRouter');
 const app = express();
@@ -9,8 +10,9 @@ app.listen(3000, function () {
 });
 
 // register routing
-app.use(defaultRouter);
-app.use(bookRouter);
+// top to bottom
+app.use('/', defaultRouter);
+app.use('/api/books', bookRouter);
 
 // status codes
 // 1xx : information
@@ -35,6 +37,38 @@ app.use(bookRouter);
 // MIME types
 //  Content-type: application/json
 //  accept: application/xml
-//  max   :  
+//  max   :
 
-// body:{}
+// body:{
+    // username:'abc@gmail.com',
+    // password:'adkfjkafkdj'
+// }
+// REST API
+// representational state transfer
+// everything is a resource
+// Read, Create, Update, Delete (CRUD)
+// 1. Uniform interface
+// 2. Stateless (no sessions)
+// 3. cacheability 
+// 4. layered system  
+// 5. client server 
+// Http Verbs: GET, POST, PUT, DELETE, PATCH
+// GET: read
+// POST: Create
+// PUT: Update (full update)
+// DELETE: Delete
+// PATCH: Partial update
+// GET www.example.com/api/books Safe, not change state
+// POST www.example.com/api/books Create Unsafe
+// http://localhost:3000/api/books GET
+// Self sufficient
+// login -> credentials -> orders
+// banking   
+// login - credentials - products
+// client - server -> server -> server 
+// GET http://localhost:3000/books/1
+// controller handler -> modify routes -> register route
+// debugging
+// console.log
+// POST http://localhost:3000/books body
+// GET http://localhost:3000/books 
