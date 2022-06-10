@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 // common js
 // enterprise applications
 const defaultRouter = require('./routes/defaultRouter');
@@ -8,6 +9,8 @@ const app = express();
 app.listen(3000, function () {
     console.log('Server is running on 3000');
 });
+
+app.use(bodyParser.json());
 
 // register routing
 // top to bottom
@@ -72,3 +75,5 @@ app.use('/api/books', bookRouter);
 // console.log
 // POST http://localhost:3000/books body
 // GET http://localhost:3000/books 
+// n-layers
+// layers have concerns

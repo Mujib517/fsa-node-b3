@@ -5,6 +5,10 @@ const books = [
 ];
 class BookCtrl {
 
+    // constructor() {
+    //     this.create = this.create.bind(this);
+    // }
+
     get(req, res) {
         res.status(200);
         res.json(books);
@@ -13,7 +17,6 @@ class BookCtrl {
     // summary & detail
     getById(req, res) {
         const id = +req.params.id;
-        console.log(req.params, "Parameters");
         let book;
         for (let i = 0; i < books.length; i++) {
             if (id === books[i].id) {
@@ -21,17 +24,34 @@ class BookCtrl {
             }
         }
 
-        res.status(200);
-        res.json(book);
+        if (book) {
+            res.status(200);
+            res.json(book);
+        } else {
+            res.status(404);
+            res.send('Not found');
+        }
+    }
+
+
+    isPayloadValid(payload) {
+        return payload.id && payload.name && payload.price;
     }
 
     // create
-    create(req, res) {
+    create = (req, res) => {
+        // validation
         const payload = req.body;
-        books.push(payload);
-        
-        res.status(201); //Created
-        res.send();
+
+        if (this.isPayloadValid(payload)) {
+            books.push(payload);
+
+            res.status(201); //Created
+            res.send();
+        } else {
+            res.status(400); //bad request
+            res.send("Invalid payload");
+        }
     }
 }
 
