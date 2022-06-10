@@ -80,3 +80,4 @@ app.use('/api/books', bookRouter);
 // Delete: 
 // DELETE http://localhost:3000/api/books/:id
 // PUT http://localhost:3000/api/books/:id body{ name: " Updated book name"}
+// PATCH http://localhost:3000/api/books/:id body {name:200}
