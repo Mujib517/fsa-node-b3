@@ -53,6 +53,34 @@ class BookCtrl {
             res.send("Invalid payload");
         }
     }
+
+    delete = (req, res) => {
+        const id = +req.params.id;
+        for (let i = 0; i < books.length; i++) {
+            if (books[i].id === id) {
+                books.splice(i, 1);
+                break;
+            }
+        }
+
+        res.status(204);
+        res.send();
+    }
+
+    update = (req, res) => {
+        const id = +req.params.id;
+        const payload = req.body;
+
+        for (let i = 0; i < books.length; i++) {
+            if (books[i].id === id) {
+                books[i].name = payload.name;
+                books[i].price = payload.price;
+            }
+        }
+
+        res.status(204);
+        res.send();
+    }
 }
 
 module.exports = new BookCtrl();

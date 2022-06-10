@@ -77,3 +77,6 @@ app.use('/api/books', bookRouter);
 // GET http://localhost:3000/books 
 // n-layers
 // layers have concerns
+// Delete: 
+// DELETE http://localhost:3000/api/books/:id
+// PUT http://localhost:3000/api/books/:id body{ name: " Updated book name"}
